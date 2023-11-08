@@ -71,4 +71,8 @@ export default class Aluno extends Model {
     });
     return this;
   }
+
+  static associate(models) {
+    this.hasMany(models.Foto, { foreignKey: 'aluno_id' });
+  }
 }
