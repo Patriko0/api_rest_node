@@ -16,7 +16,7 @@ import './database';
 dotenv.config();
 
 const whiteList = [
-  'http://192.168.0.187/',
+  'http://192.168.0.187',
   'http://localhost:3000',
 //   'http://localhost:3001',
 ];
@@ -42,7 +42,9 @@ class App {
 
   middlewares() {
     this.app.use(cors(corsOptions));
-    this.app.use(helmet());
+    this.app.use(helmet({
+      crossOriginEmbedderPolicy: false,
+    }));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
     this.app.use(express.static(resolve(__dirname, '..', 'uploads')));
